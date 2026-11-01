@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NOVA AI</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#05030f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NOVA AI">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M9 10.5h.01M12 10.5h.01M15 10.5h.01"/></symbol>
+  <symbol id="ic-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></symbol>
+  <symbol id="ic-video" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3.5"/><path d="M10 9l6 3-6 3z"/></symbol>
+  <symbol id="ic-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></symbol>
+  <symbol id="ic-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 5l-4 14"/></symbol>
+  <symbol id="ic-pen" viewBox="0 0 24 24"><path d="M4 20l1-5L16 4l4 4L9 19z"/><path d="M14 6l4 4"/></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></symbol>
+  <symbol id="ic-translate" viewBox="0 0 24 24"><path d="M3 6h9M7 4v2M5 6c1 4 4 7 7 8M11 6c-1 4-4 7-8 9M13 20l4-9 4 9M14.5 17h5"/></symbol>
+  <symbol id="ic-doc" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="ic-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9h-6v-6H9v6H3z"/></symbol>
+  <symbol id="ic-tools" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="3"/><rect x="4" y="14" width="6" height="6" rx="3"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></symbol>
+  <symbol id="ic-library" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 10h.01M15 10h.01M9 15q3 2.5 6 0"/></symbol>
+  <symbol id="ic-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+  <symbol id="ic-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h12M4 17h16"/></symbol>
+  <symbol id="ic-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0112 0v5l2 2H4zM10 20a2 2 0 004 0"/></symbol>
+  <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="ic-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 012-2h9"/></symbol>
+  <symbol id="ic-up" viewBox="0 0 24 24"><path d="M7 11v9H4v-9zM7 11l4-8c2 0 3 1 3 3v3h5l-1 8H7"/></symbol>
+  <symbol id="ic-down" viewBox="0 0 24 24"><path d="M7 13V4H4v9zM7 13l4 8c2 0 3-1 3-3v-3h5l-1-8H7"/></symbol>
+  <symbol id="ic-share" viewBox="0 0 24 24"><path d="M4 12v7h16v-7M12 4v11M8 8l4-4 4 4"/></symbol>
+  <symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="ic-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+  <symbol id="ic-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18z" fill="currentColor"/></symbol>
+  <symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+  <symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+  <symbol id="ic-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zM4 19V5M9 7h6"/></symbol>
+  <symbol id="ic-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></symbol>
+  <symbol id="ic-list" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+  <symbol id="ic-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0012 3z"/></symbol>
+  <symbol id="ic-speaker" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11"/></symbol>
+  <symbol id="ic-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="ic-send" viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></symbol>
+  <symbol id="ic-swap" viewBox="0 0 24 24"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+  <symbol id="ic-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+</svg>
+
+  <!-- 1. SPLASH -->
+  <section class="screen center active" id="splash">
+    <svg class="logo-svg" viewBox="0 0 240 200" aria-label="NOVA AI logo">
+      <defs>
+        <linearGradient id="gN" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00c8ff"/><stop offset=".55" stop-color="#6c3bff"/><stop offset="1" stop-color="#c04dff"/></linearGradient>
+        <filter id="gl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <ellipse cx="120" cy="112" rx="108" ry="46" transform="rotate(-20 120 112)" fill="none" stroke="url(#gN)" stroke-width="5" filter="url(#gl)"/>
+      <ellipse cx="120" cy="112" rx="96" ry="36" transform="rotate(-24 120 112)" fill="none" stroke="#00c8ff" stroke-width="1.5" opacity=".6"/>
+      <path d="M72 150 L98 56 L124 56 L148 112 L160 56 L186 56 L158 150 L132 150 L108 94 L98 150 Z" fill="url(#gN)" filter="url(#gl)"/>
+      <path d="M208 14 L214 34 L234 40 L214 46 L208 66 L202 46 L182 40 L202 34 Z" fill="#fff" filter="url(#gl)"/>
+    </svg>
+    <h1 class="brand">NOVA <b>AI</b></h1>
+    <p class="tag">Smarter. Faster. Greater.</p>
+    <p class="sub">Your All-in-One<br>AI Assistant</p>
+    <div class="spinner"></div>
+    <p class="small">Loading your AI world...</p>
+    <div class="splash-wave"></div>
+  </section>
+
+  <!-- 2. HOME -->
+  <section class="screen" id="home">
+    <header class="top">
+      <button class="iconbtn" id="menuBtn"><svg class="ic"><use href="#ic-menu"/></svg></button>
+      <span class="spacer"></span>
+      <span class="pro" data-go="upgrade">👑 Pro</span>
+      <button class="iconbtn" data-go="notifs"><svg class="ic"><use href="#ic-bell"/></svg></button>
+    </header>
+    <div class="hero">
+      <div>
+        <h2>Welcome back,<br><b class="uname">Master Praise</b> 👑</h2>
+        <p class="small">What would you like to do today?</p>
+      </div>
+      <div class="robot">
+        <svg viewBox="0 0 160 170">
+          <defs>
+            <linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6ff"/><stop offset="1" stop-color="#7f8bd8"/></linearGradient>
+            <filter id="rg" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <path d="M20 170 Q22 100 80 96 Q138 100 140 170 Z" fill="url(#rb)"/>
+          <path d="M20 170 Q22 100 80 96" fill="none" stroke="#00c8ff" stroke-width="2" filter="url(#rg)"/>
+          <circle cx="80" cy="132" r="15" fill="#0a0a2a" stroke="#00c8ff" stroke-width="3" filter="url(#rg)"/>
+          <text x="80" y="138" text-anchor="middle" font-size="16" font-weight="900" font-style="italic" fill="#00c8ff">N</text>
+          <rect x="22" y="40" width="14" height="30" rx="7" fill="#6c3bff" filter="url(#rg)"/>
+          <rect x="124" y="40" width="14" height="30" rx="7" fill="#6c3bff" filter="url(#rg)"/>
+          <circle cx="80" cy="58" r="44" fill="url(#rb)"/>
+          <rect x="45" y="40" width="70" height="38" rx="19" fill="#07061c" stroke="#3a2fa0" stroke-width="2"/>
+          <circle cx="66" cy="59" r="6" fill="#00e5ff" filter="url(#rg)"/>
+          <circle cx="94" cy="59" r="6" fill="#00e5ff" filter="url(#rg)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="searchbar">
+      <span class="sicon"><svg class="ic sm"><use href="#ic-search"/></svg></span>
+      <input id="homeInput" placeholder="Ask NOVA anything...">
+      <button class="send" id="homeSend"><svg class="ic sm"><use href="#ic-send"/></svg></button>
+    </div>
+    <div class="grid">
+      <button class="tile" data-go="chat"><i><svg class="ic"><use href="#ic-chat"/></svg></i>AI Chat</button>
+      <button class="tile" data-go="image"><i><svg class="ic"><use href="#ic-image"/></svg></i>Image Generator</button>
+      <button class="tile" data-tool="video"><i><svg class="ic"><use href="#ic-video"/></svg></i>Video Generator</button>
+      <button class="tile" data-go="voice"><i><svg class="ic"><use href="#ic-mic"/></svg></i>Voice Assistant</button>
+      <button class="tile" data-go="coding"><i><svg class="ic"><use href="#ic-code"/></svg></i>Coding Assistant</button>
+      <button class="tile" data-go="writing"><i><svg class="ic"><use href="#ic-pen"/></svg></i>AI Writing</button>
+      <button class="tile" data-tool="research"><i><svg class="ic"><use href="#ic-search"/></svg></i>Research</button>
+      <button class="tile" data-go="translator"><i><svg class="ic"><use href="#ic-translate"/></svg></i>Translator</button>
+      <button class="tile" data-tool="document"><i><svg class="ic"><use href="#ic-doc"/></svg></i>Document Analysis</button>
+    </div>
+  </section>
+
+  <!-- 3. CHAT -->
+  <section class="screen" id="chat">
+    <header class="top">
+      <button class="icon" data-back>‹</button>
+      <div class="avatar">N</div>
+      <div class="who"><b>NOVA AI</b><small><i class="dot"></i> Online</small></div>
+      <span class="spacer"></span>
+      <button class="iconbtn" data-go="voice"><svg class="ic "><use href="#ic-phone"/></svg></button>
+      <button class="iconbtn" id="clearChat" title="Clear chat"><svg class="ic "><use href="#ic-clock"/></svg></button>
+    </header>
+    <div class="messages" id="messages"></div>
+    <div class="inputwrap">
+      <div class="searchbar">
+        <span class="spark">✦</span>
+        <input id="chatInput" placeholder="Type a message...">
+        <button class="send" id="chatSend"><svg class="ic sm"><use href="#ic-send"/></svg></button>
+      </div>
+      <div class="chips-row">
+        <button id="newChatBtn" title="New chat"><svg class="ic sm"><use href="#ic-plus"/></svg></button>
+        <button data-go="image"><svg class="ic sm"><use href="#ic-image"/></svg>Image</button>
+        <button data-go="voice"><svg class="ic sm"><use href="#ic-mic"/></svg>Voice</button>
+        <button id="chatFile"><svg class="ic sm"><use href="#ic-doc"/></svg>File</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. IMAGE GENERATOR -->
+  <section class="screen" id="image">
+    <header class="top">
+      <button class="icon" data-back>‹</button>
+      <h3>AI Image Generator</h3>
+      <span class="spacer"></span>
+      <span class="pro" data-go="upgrade">👑 Pro</span>
+    </header>
+    <div class="promptbox">
+      <textarea id="imgPrompt" rows="2">A beautiful futuristic city at night, with flying cars</textarea>
+      <button class="send" id="imgGen"><svg class="ic sm"><use href="#ic-send"/></svg></button>
+    </div>
+    <div class="canvaswrap"><canvas id="artCanvas" width="640" height="640"></canvas><div id="genOverlay" class="overlay hidden">Generating...</div></div>
+    <div class="actions3">
+      <button id="imgDownload"><svg class="ic sm"><use href="#ic-download"/></svg>Download</button>
+      <button id="imgShare"><svg class="ic sm"><use href="#ic-share"/></svg>Share</button>
+      <button id="imgEdit"><svg class="ic sm"><use href="#ic-pen"/></svg>Edit</button>
+    </div>
+    <h4>Try another idea:</h4>
+    <div class="ideas">
+      <button class="idea">A cute cat in space</button>
+      <button class="idea">A modern house</button>
+      <button class="idea">A serene beach</button>
+    </div>
+  </section>
+
+  <!-- 5. VOICE -->
+  <section class="screen" id="voice">
+    <header class="top">
+      <button class="icon" data-back>‹</button>
+      <h3>Voice Assistant</h3>
+      <span class="spacer"></span>
+      <span class="pro" data-go="upgrade">👑 Pro</span>
+    </header>
+    <div class="voicebody">
+      <div class="wave left"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <button class="mic" id="micBtn"><svg class="ic "><use href="#ic-mic"/></svg></button>
+      <div class="wave right"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <p class="center-text"><b id="voiceTitle">Tap to talk</b><br><span class="small" id="voiceHint">(or say "Hey NOVA")</span></p>
+    <p class="voice-reply" id="voiceReply"></p>
+    <div class="voicebar">
+      <div class="listening" id="listenPill">▮▯▮ <span id="listenText">Idle</span></div>
+      <button class="stop" id="voiceStop">✕</button>
+    </div>
+  </section>
+
+  <!-- 6. CODING -->
+  <section class="screen" id="coding">
+    <header class="top">
+      <button class="icon" data-back>‹</button>
+      <h3>AI Coding Assistant</h3>
+    </header>
+    <div class="tabs" id="langTabs">
+      <button class="on">Python</button><button>JavaScript</button><button>HTML</button><button id="moreTab">More ⌄</button>
+    </div>
+    <div class="tabs hidden" id="moreLangs"><button>C++</button><button>Java</button><button>PHP</button><button>Kotlin</button><button>C#</button></div>
+    <pre class="code" id="codeBox"></pre>
+    <p class="ok" id="codeStatus">● Click "Run Again" to run the code</p>
+    <pre class="output" id="codeOut">Output will appear here</pre>
+    <div class="actions3">
+      <button id="codeExplain">Explain</button>
+      <button id="codeImprove">Improve</button>
+      <button id="codeRun">Run Again</button>
+    </div>
+    <p class="explain hidden" id="codeNote"></p>
+    <div class="searchbar bottom">
+      <input id="codeInput" placeholder="Ask about your code...">
+      <button class="send" id="codeSend"><svg class="ic sm"><use href="#ic-send"/></svg></button>
+    </div>
+  </section>
+
+  <!-- 7. WRITING -->
+  <section class="screen" id="writing">
+    <header class="top">
+      <button class="icon" data-back>‹</button>
+      <h3>AI Writing</h3>
+      <span class="spacer"></span>
+      <span class="pro" data-go="upgrade">👑 Pro</span>
+    </header>
+    <div class="list">
+      <button class="row" data-tool="essay"><i><svg class="ic "><use href="#ic-doc"/></svg></i><div><b>Essay Writer</b><small>Write essays and articles</small></div></button>
+      <button class="row" data-tool="story"><i><svg class="ic "><use href="#ic-book"/></svg></i><div><b>Story Generator</b><small>Create amazing stories</small></div></button>
+      <button class="row" data-tool="email"><i><svg class="ic "><use href="#ic-mail"/></svg></i><div><b>Email Writer</b><small>Compose professional emails</small></div></button>
+      <button class="row" data-tool="summary"><i><svg class="ic "><use href="#ic-list"/></svg></i><div><b>Summarizer</b><small>Summarize long texts</small></div></button>
+      <button class="row" data-tool="content"><i><svg class="ic "><use href="#ic-bulb"/></svg></i><div><b>Content Creator</b><small>Create social media posts</small></div></button>
+    </div>
+    <div class="searchbar bottom">
+      <input id="writeInput" placeholder="Tell me what to write...">
+      <button class="send" id="writeSend"><svg class="ic sm"><use href="#ic-send"/></svg></button>
+    </div>
+  </section>
+
+  <!-- 8. TRANSLATOR -->
+  <section class="screen" id="translator">
+    <header class="top">
+      <button class="icon" data-back>‹</button>
+      <h3>Translator</h3>
+      <span class="spacer"></span>
+      <button class="iconbtn" id="swapTop"><svg class="ic "><use href="#ic-swap"/></svg></button>
+    </header>
+    <div class="langbar">
+      <select id="fromLang"><option value="en">English</option><option value="fr">French</option><option value="es">Spanish</option><option value="de">German</option></select>
+      <button class="swap" id="swapBtn"><svg class="ic sm"><use href="#ic-swap"/></svg></button>
+      <select id="toLang"><option value="fr">French</option><option value="en">English</option><option value="es">Spanish</option><option value="de">German</option></select>
+    </div>
+    <div class="tbox"><textarea id="transIn" rows="3">Hello, how are you?</textarea><button class="x" id="transClear">✕</button></div>
+    <div class="tbox out"><p id="transOut">Bonjour, comment ça va ?</p>
+      <div class="tools"><button id="transSpeak"><svg class="ic "><use href="#ic-speaker"/></svg></button><button id="transCopy"><svg class="ic "><use href="#ic-copy"/></svg></button></div></div>
+    <button class="listen" id="transListen"><svg class="ic sm"><use href="#ic-play"/></svg> Listen</button>
+    <div class="globe"></div>
+  </section>
+
+  <!-- 9. SETTINGS -->
+  <section class="screen" id="settings">
+    <header class="top"><span class="gear"><svg class="ic "><use href="#ic-gear"/></svg></span><h3>Settings</h3></header>
+    <div class="profile">
+      <div class="pic" data-go="account">P</div>
+      <div><b class="uname">Master Praise</b><small>premium@nova.ai</small></div>
+      <span class="pro small-pro">👑 Pro</span>
+    </div>
+    <div class="list tight">
+      <button class="row s" data-go="account"><i><svg class="ic "><use href="#ic-user"/></svg></i><b>Account &amp; Privacy</b><em>›</em></button>
+      <button class="row s" data-go="prefs"><i><svg class="ic "><use href="#ic-sparkle"/></svg></i><b>AI Preferences</b><em>›</em></button>
+      <button class="row s" id="themeRow"><i><svg class="ic "><use href="#ic-theme"/></svg></i><b>Appearance</b><u id="themeLabel">Dark Mode</u><em>›</em></button>
+      <button class="row s" data-go="wallpapers"><i><svg class="ic "><use href="#ic-image"/></svg></i><b>Wallpaper</b><u id="wpLabel">Nova Purple</u><em>›</em></button>
+      <button class="row s" id="notifRow"><i><svg class="ic "><use href="#ic-bell"/></svg></i><b>Notifications</b><u id="notifLabel">On</u><em>›</em></button>
+      <button class="row s" data-go="prefs" id="langRow"><i><svg class="ic "><use href="#ic-globe"/></svg></i><b>Language</b><u id="langLabel">English</u><em>›</em></button>
+      <button class="row s" id="installRow"><i><svg class="ic"><use href="#ic-download"/></svg></i><b>Install app</b><em>›</em></button>
+      <button class="row s" data-go="about"><i><svg class="ic "><use href="#ic-info"/></svg></i><b>About NOVA AI</b><em>›</em></button>
+    </div>
+    <div class="aicard">
+      <b>AI Connection</b>
+      <small id="aiStatus">Demo mode (offline answers)</small>
+      <input id="apiKey" type="password" placeholder="Paste your Gemini or Claude API key" autocomplete="off">
+      <div class="actions3"><button id="keySave">Save key</button><button id="keyRemove">Remove</button></div>
+    </div>
+    <button class="upgrade" data-go="upgrade">👑 Upgrade to Pro</button>
+    <p class="center-text small">NOVA AI • Dream Bigger ✨</p>
+  </section>
+
+  <!-- 10. GENERIC TOOL (Video, Research, Document, Writing tools) -->
+  <section class="screen" id="tool">
+    <header class="top">
+      <button class="icon" data-back>‹</button>
+      <h3 id="toolTitle">Tool</h3>
+      <span class="spacer"></span>
+      <span class="pro" data-go="upgrade">👑 Pro</span>
+    </header>
+    <p class="small" id="toolDesc"></p>
+    <div class="promptbox"><textarea id="toolInput" rows="3" placeholder="Type here..."></textarea><button class="send" id="toolGo"><svg class="ic sm"><use href="#ic-send"/></svg></button></div>
+    <div class="toolout" id="toolOut">Your result will appear here.</div>
+    <div class="actions3"><button id="toolCopy"><svg class="ic sm"><use href="#ic-copy"/></svg>Copy</button><button id="toolClear">Clear</button><button id="toolFile"><svg class="ic sm"><use href="#ic-doc"/></svg>Upload</button></div>
+  </section>
+
+  <!-- 11. LIBRARY -->
+  <section class="screen" id="library">
+    <header class="top"><h3>Library</h3></header>
+    <p class="small">Images you generate are saved here.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <!-- 12. CHAT HISTORY -->
+  <section class="screen" id="history">
+    <header class="top">
+      <button class="icon" data-back>‹</button>
+      <h3>Chat history</h3>
+      <span class="spacer"></span>
+      <button class="pro" id="histNew">+ New chat</button>
+    </header>
+    <p class="small">Saved only on this phone.</p>
+    <div class="list" id="histList"></div>
+    <button class="deleteall" id="histClear">Delete all chats</button>
+  </section>
+
+  
+  <!-- 13. WALLPAPERS -->
+  <section class="screen" id="wallpapers">
+    <header class="top"><button class="icon" data-back>‹</button><h3>Wallpapers</h3></header>
+    <p class="small">Choose a background for the whole app (dark mode).</p>
+    <div class="wpgrid" id="wpGrid"></div>
+    <div class="actions3"><button id="wpGallery">Choose from gallery</button><button id="wpReset">Reset</button></div>
+    <input type="file" id="wpFile" accept="image/*" hidden>
+  </section>
+
+  <!-- 14. NOTIFICATIONS -->
+  <section class="screen" id="notifs">
+    <header class="top"><button class="icon" data-back>‹</button><h3>Notifications</h3></header>
+    <div class="list">
+      <button class="row" data-go="wallpapers"><i><svg class="ic "><use href="#ic-image"/></svg></i><div><b>New: Wallpapers</b><small>Change the look of your app</small></div></button>
+      <button class="row" data-go="settings"><i><svg class="ic "><use href="#ic-sparkle"/></svg></i><div><b>Connect live AI</b><small>Add your free Gemini key in Profile</small></div></button>
+      <button class="row" data-go="history"><i><svg class="ic "><use href="#ic-clock"/></svg></i><div><b>Your chats are saved</b><small>Open them any time from chat history</small></div></button>
+      <button class="row" data-go="home"><i><svg class="ic "><use href="#ic-sparkle"/></svg></i><div><b>Tip: tap the robot</b><small>It spins on the home screen</small></div></button>
+    </div>
+  </section>
+
+  <!-- 15. ACCOUNT & PRIVACY -->
+  <section class="screen" id="account">
+    <header class="top"><button class="icon" data-back>‹</button><h3>Account &amp; Privacy</h3></header>
+    <div class="aicard"><b>Your name</b><input id="nameIn" placeholder="Your name"><small>Used in greetings and AI replies.</small><button class="pbtn" id="nameSave">Save name</button></div>
+    <div class="aicard"><b>Privacy</b><small>Your chats, images, wallpaper and API key are stored only on this phone. When you use live AI, your messages are sent to the AI provider whose key you added. Online image generation sends your picture description to Pollinations.</small></div>
+    <button class="deleteall" id="wipeAll">Erase all my data</button>
+  </section>
+
+  <!-- 16. AI PREFERENCES -->
+  <section class="screen" id="prefs">
+    <header class="top"><button class="icon" data-back>‹</button><h3>AI Preferences</h3></header>
+    <div class="aicard"><b>Answer style</b>
+      <select id="styleSel"><option value="short">Short</option><option value="balanced">Balanced</option><option value="detailed">Detailed</option></select></div>
+    <div class="aicard"><b>Image engine</b>
+      <select id="imgEngine"><option value="online">Online AI (free, needs internet)</option><option value="offline">Offline neon art</option></select>
+      <small>Online mode sends your image description to the free Pollinations service.</small></div>
+    <div class="aicard"><b>Answer language</b>
+      <select id="aiLangSel"><option>English</option><option>French</option><option>Spanish</option><option>German</option></select></div>
+    <div class="list tight"><button class="row s" id="speakRow"><i><svg class="ic "><use href="#ic-speaker"/></svg></i><b>Read answers aloud</b><u id="speakLabel">Off</u><em>›</em></button></div>
+  </section>
+
+  <!-- 17. ABOUT -->
+  <section class="screen" id="about">
+    <header class="top"><button class="icon" data-back>‹</button><h3>About NOVA AI</h3></header>
+    <div class="aicard"><b>NOVA AI · Dream Bigger ✨</b><small>Version 1.0</small>
+      <small>Chat, image generation, voice assistant, coding help, writing tools, translation, research and document analysis in one app.</small></div>
+    <div class="aicard"><b>Made with</b><small>HTML, CSS and JavaScript. Live answers use the API key you add in Profile.</small></div>
+  </section>
+
+  <!-- 18. UPGRADE -->
+  <section class="screen" id="upgrade">
+    <header class="top"><button class="icon" data-back>‹</button><h3>Upgrade to Pro</h3></header>
+    <div class="aicard"><b>Free</b><small>Chat · Image generator · Translator · Writing tools</small></div>
+    <div class="aicard proplan"><b>👑 Pro</b><small>Everything in Free, plus priority features and early access to new tools.</small>
+      <button class="pbtn" id="proBtn">Continue</button></div>
+    <p class="small">This is a demo screen. No payment is taken.</p>
+  </section>
+
+  <!-- BOTTOM NAV -->
+  <nav id="bottomnav">
+    <button data-nav="home" class="on"><i><svg class="ic"><use href="#ic-home"/></svg></i>Home</button>
+    <button data-nav="tools"><i><svg class="ic"><use href="#ic-tools"/></svg></i>Tools</button>
+    <button class="center" data-nav="chat">✦</button>
+    <button data-nav="library"><i><svg class="ic"><use href="#ic-library"/></svg></i>Library</button>
+    <button data-nav="settings"><i><svg class="ic"><use href="#ic-user"/></svg></i>Profile</button>
+  </nav>
+
+  
+  <div id="drawer" class="hidden">
+    <aside>
+      <div class="dhead"><div class="avatar">N</div><div><b class="uname">Master Praise</b><small>NOVA AI</small></div></div>
+      <button class="ditem" data-go="home"><svg class="ic "><use href="#ic-home"/></svg>Home</button>
+    <button class="ditem" data-go="chat"><svg class="ic "><use href="#ic-chat"/></svg>AI Chat</button>
+    <button class="ditem" data-go="image"><svg class="ic "><use href="#ic-image"/></svg>Image Generator</button>
+    <button class="ditem" data-tool="video"><svg class="ic "><use href="#ic-video"/></svg>Video Generator</button>
+    <button class="ditem" data-go="voice"><svg class="ic "><use href="#ic-mic"/></svg>Voice Assistant</button>
+    <button class="ditem" data-go="coding"><svg class="ic "><use href="#ic-code"/></svg>Coding Assistant</button>
+    <button class="ditem" data-go="writing"><svg class="ic "><use href="#ic-pen"/></svg>AI Writing</button>
+    <button class="ditem" data-tool="research"><svg class="ic "><use href="#ic-search"/></svg>Research</button>
+    <button class="ditem" data-go="translator"><svg class="ic "><use href="#ic-translate"/></svg>Translator</button>
+    <button class="ditem" data-tool="document"><svg class="ic "><use href="#ic-doc"/></svg>Document Analysis</button>
+    <button class="ditem" data-go="history"><svg class="ic "><use href="#ic-clock"/></svg>Chat history</button>
+    <button class="ditem" data-go="library"><svg class="ic "><use href="#ic-library"/></svg>Library</button>
+    <button class="ditem" data-go="wallpapers"><svg class="ic "><use href="#ic-image"/></svg>Wallpapers</button>
+    <button class="ditem" data-go="settings"><svg class="ic "><use href="#ic-gear"/></svg>Settings</button>
+    
+    </aside>
+  </div>
+  <div id="lightbox" class="hidden"><img id="lbImg" alt="Generated image"><p class="small">Long-press the picture to save it, or tap Download.</p><button class="pbtn" id="lbDownload">Download</button></div>
+  <input type="file" id="fileIn" hidden>
+  <div id="toast"></div>
+</div>
+<div id="errbox" style="display:none;position:fixed;left:8px;right:8px;top:8px;z-index:99;padding:10px;border-radius:10px;background:#7a0020;color:#fff;font:13px monospace"></div>
+<script>
+function showErr(m){var b=document.getElementById("errbox");b.style.display="block";b.textContent=m;}
+window.onerror=function(m,u,l){showErr("JS error: "+m+" (line "+l+")");};
+</script>
+<script src="script.js" onerror="showErr('script.js NOT FOUND. Check the file name and that it is in the same folder as index.html')"></script>
+</body>
+</html>
